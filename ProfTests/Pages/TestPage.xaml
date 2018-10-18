@@ -1,0 +1,80 @@
+﻿<Page x:Class="ProfTests.Pages.TestPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProfTests.Pages"
+      xmlns:conv="clr-namespace:ProfTests.Converters"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TestPage" Background="{DynamicResource FormColor}" Name="mainForm">
+    <Page.Resources>
+        <conv:QuestionBorderConverter x:Key="QuestBorderConv"/>
+        <SolidColorBrush x:Key="FormColor" Color="#FFADA9A9"/>
+    </Page.Resources>
+    <Page.InputBindings>
+        <KeyBinding Key="Right" Command="{Binding NextCommand}"/>
+        <KeyBinding Key="Return" Command="{Binding NextCommand}"/>
+        <KeyBinding Key="Left" Command="{Binding PreviousCommand}"/>
+    </Page.InputBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource TriangleButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Command="{Binding PreviousCommand}"/>
+            <Button Style="{StaticResource TriangleButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    Grid.Column="2" RenderTransform="{StaticResource Rotate180}" Command="{Binding NextCommand}"/>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                <TextBlock FontSize="20" Text="{Binding SelectedQuestion.Text}" HorizontalAlignment="Center" 
+                       Margin="10" TextWrapping="Wrap" TextAlignment="Center"/>
+                <ItemsControl ItemsSource="{Binding SelectedQuestion.Answers}" BorderThickness="0">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <RadioButton GroupName="{Binding ElementName=mainForm, Path=DataContext.SelectedQuestion.Text}" VerticalContentAlignment="Center" 
+                                         IsChecked="{Binding IsSelected}" Template="{DynamicResource RadioButtonControlTemplate}" Checked="SetGreen">
+                                <TextBlock FontSize="17" Text="{Binding Text}" VerticalAlignment="Center"/>
+                            </RadioButton>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Grid>
+        <ListView ItemsSource="{Binding SelectedMethodic.Questions}" SelectedItem="{Binding SelectedQuestion}" 
+                  Grid.Row="2" Background="{StaticResource FormColor}" BorderThickness="0"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Template" Value="{StaticResource ListViewItemControlTemplateNumber}"/>
+                    <Setter Property="BorderThickness" Value="3"/>
+                    <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+                    <Setter Property="BorderBrush" Value="{Binding Completed, Converter={StaticResource QuestBorderConv}}"/>
+                    <Setter Property="Margin" Value="0"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel MaxHeight="100" HorizontalAlignment="Center">
+                    </WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Width="30" Height="25" BorderThickness="0" Background="{Binding Completed, Converter={StaticResource QuestBorderConv}}"
+                        Padding="0">
+                        <TextBlock Text="{Binding Number}" Foreground="White" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>
