@@ -33,7 +33,8 @@ namespace ProfTests.Pages
                 case TestType.Choices:
                     {
                         TestVariant.Children.Add(new TestControl(Model));
-                    } break;
+                    }
+                    break;
                 case TestType.Compare:
                     {
                         TestVariant.Children.Add(new TestControl(Model));
@@ -116,7 +117,20 @@ namespace ProfTests.Pages
                     {
                         SelectedMethodic = Methodics[index + 1];
                         SelectedQuestion = SelectedMethodic.Questions.First();
+                        ShowInstruction();
                     }
+                });
+            }
+        }
+
+        public SimpleCommand CloseInstruction
+        {
+            get
+            {
+                return new SimpleCommand((obj) =>
+                {
+                    TestVisibility = Visibility.Visible;
+                    InstructionVisibility = Visibility.Collapsed;
                 });
             }
         }
@@ -157,6 +171,34 @@ namespace ProfTests.Pages
             {
                 _LastMethodic = value;
                 OnPropertyChanged("LastMethodic");
+            }
+        }
+
+        public void ShowInstruction()
+        {
+            TestVisibility = Visibility.Collapsed;
+            InstructionVisibility = Visibility.Visible;
+        }
+
+        public Visibility _InstructionVisibility = Visibility.Visible;
+        public Visibility InstructionVisibility
+        {
+            get => _InstructionVisibility;
+            set
+            {
+                _InstructionVisibility = value;
+                OnPropertyChanged("InstructionVisibility");
+            }
+        }
+
+        public Visibility _TestVisibility = Visibility.Collapsed;
+        public Visibility TestVisibility
+        {
+            get => _TestVisibility;
+            set
+            {
+                _TestVisibility = value;
+                OnPropertyChanged("TestVisibility");
             }
         }
     }

@@ -9,6 +9,8 @@ namespace ProfTests.Models
 {
     public class Methodic : BaseViewModel
     {
+        public string Name { get; set; }
+        public string Description { get; set; }
         public List<Question> Questions { get; set; }
         public Action<Methodic> CalcResult { get; set; }
         public List<TestResult> TestResult { get; set; }
