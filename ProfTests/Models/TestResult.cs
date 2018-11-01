@@ -8,6 +8,13 @@ namespace ProfTests.Models
 {
     public class TestResult
     {
-        public Dictionary<string, string> Items { get; set; } = new Dictionary<string, string>();
+        public TestResult(string header, string description)
+        {
+            Header = header;
+            Description = description;
+        }
+
+        public string Header { get; set; }
+        public string Description { get; set; }
     }
 }

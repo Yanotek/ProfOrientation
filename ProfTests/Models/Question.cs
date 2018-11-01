@@ -9,7 +9,7 @@ namespace ProfTests.Models
 {
     public class Question : BaseViewModel
     {
-        public Question(string text, string group)
+        public Question(string text, string group = "")
         {
             Text = text;
             Group = group;

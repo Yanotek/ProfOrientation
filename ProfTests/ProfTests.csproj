@@ -61,6 +61,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Enums\TestType.cs" />
+    <Compile Include="User controls\ScalerControl.xaml.cs">
+      <DependentUpon>ScalerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User controls\TestControl.xaml.cs">
+      <DependentUpon>TestControl.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -69,6 +76,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\BoolToHiddenConverter.cs" />
+    <Compile Include="Converters\LastMethodicToTextConverter.cs" />
     <Compile Include="Converters\QuestionBorderConverter.cs" />
     <Compile Include="Data\Input.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -79,7 +88,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\ResultPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\TestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User controls\ScalerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User controls\TestControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -93,6 +114,9 @@
     <Compile Include="Other\SimpleCommand.cs" />
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ResultPage.xaml.cs">
+      <DependentUpon>ResultPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\TestPage.xaml.cs">
       <DependentUpon>TestPage.xaml</DependentUpon>

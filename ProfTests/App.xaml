@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:ProfTests"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <SolidColorBrush x:Key="FormColor" Color="#FFADA9A9"/>
         <SolidColorBrush x:Key="Button.Completed.Question" Color="#66008000"/>
         <SolidColorBrush x:Key="Button.Static.Background" Color="#7F1E1E1E"/>
         <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
@@ -94,8 +95,7 @@
         <RotateTransform x:Key="Rotate090" CenterX="40" CenterY="40" Angle="090"/>
         <RotateTransform x:Key="Rotate180" CenterX="40" CenterY="40" Angle="180"/>
         <RotateTransform x:Key="Rotate270" CenterX="40" CenterY="40" Angle="270"/>
-        
-        
+
         <ControlTemplate x:Key="RadioButtonControlTemplate" TargetType="{x:Type RadioButton}">
             <Grid x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
                 <Grid.ColumnDefinitions>
@@ -149,5 +149,39 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
+
+        <Style TargetType="Button" x:Key="ButtonStyle">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="True">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#FFE6E6E6"/>
+                                <Setter Property="BorderBrush" Value="#FFBCBCBC"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FFD9ECFF"/>
+                                <Setter Property="BorderBrush" Value="#FF3C77DD"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        
     </Application.Resources>
 </Application>

@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:ProfTests.Pages"
+      xmlns:local="clr-namespace:ProfTests.User_controls"
       xmlns:conv="clr-namespace:ProfTests.Converters"
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       mc:Ignorable="d" 
@@ -11,7 +11,8 @@
       Title="TestPage" Background="{DynamicResource FormColor}" Name="mainForm">
     <Page.Resources>
         <conv:QuestionBorderConverter x:Key="QuestBorderConv"/>
-        <SolidColorBrush x:Key="FormColor" Color="#FFADA9A9"/>
+        <conv:BoolToHiddenConverter x:Key="BoolToHidden"/>
+        <conv:LastMethodicToTextConverter x:Key="LastMethodicToText"/>
     </Page.Resources>
     <Page.InputBindings>
         <KeyBinding Key="Right" Command="{Binding NextCommand}"/>
@@ -35,18 +36,14 @@
             <Button Style="{StaticResource TriangleButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" 
                     Grid.Column="2" RenderTransform="{StaticResource Rotate180}" Command="{Binding NextCommand}"/>
             <StackPanel Grid.Column="1" HorizontalAlignment="Center">
-                <TextBlock FontSize="20" Text="{Binding SelectedQuestion.Text}" HorizontalAlignment="Center" 
-                       Margin="10" TextWrapping="Wrap" TextAlignment="Center"/>
-                <ItemsControl ItemsSource="{Binding SelectedQuestion.Answers}" BorderThickness="0">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <RadioButton GroupName="{Binding ElementName=mainForm, Path=DataContext.SelectedQuestion.Text}" VerticalContentAlignment="Center" 
-                                         IsChecked="{Binding IsSelected}" Template="{DynamicResource RadioButtonControlTemplate}" Checked="SetGreen">
-                                <TextBlock FontSize="17" Text="{Binding Text}" VerticalAlignment="Center"/>
-                            </RadioButton>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <StackPanel Name="TestVariant"/>
+                <Button Height="60" Width="200" Margin="20" Style="{StaticResource ButtonStyle}" Command="{Binding EndCommand}"
+                        Visibility="{Binding SelectedMethodic.Completed, Converter={StaticResource BoolToHidden}}">
+                    <Viewbox>
+                        <TextBlock Text="{Binding LastMethodic, Converter={StaticResource LastMethodicToText}}" TextAlignment="Center"
+                                   Margin="5"/>
+                    </Viewbox>
+                </Button>
             </StackPanel>
         </Grid>
         <ListView ItemsSource="{Binding SelectedMethodic.Questions}" SelectedItem="{Binding SelectedQuestion}" 
@@ -63,7 +60,7 @@
             </ListView.ItemContainerStyle>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel MaxHeight="100" HorizontalAlignment="Center">
+                    <WrapPanel HorizontalAlignment="Center">
                     </WrapPanel>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>

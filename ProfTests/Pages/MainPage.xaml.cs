@@ -28,7 +28,27 @@ namespace ProfTests.Pages
 
         private void FirstMethodClick(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new TestPage(new List<Methodic> { Data.Input.PrimaryMethodic() }));
+            NavigationService.Navigate(new TestPage(new List<Methodic>
+            {
+                Data.Input.PrimaryMethodic(),
+                Data.Input.PrimaryMethodicSecond()
+            }, Enums.TestType.Choices));
+        }
+
+        private void SecondMethodClick(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new TestPage(new List<Methodic>
+            {
+                Data.Input.SecondarySchool()
+            }, Enums.TestType.Compare));
+        }
+
+        private void ThirtMethodClick(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new TestPage(new List<Methodic>
+            {
+                Data.Input.HighSchool()
+            }, Enums.TestType.Scale));
         }
     }
 }

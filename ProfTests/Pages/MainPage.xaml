@@ -7,10 +7,20 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainPage">
-
+    <Page.Resources>
+        <Style TargetType="Border">
+            <Setter Property="CornerRadius" Value="3"/>
+        </Style>
+    </Page.Resources>
+    
     <Grid>
-        <StackPanel>
-            <Button Content="Meth 1" Click="FirstMethodClick"/>
+        <StackPanel Margin="10">
+            <Button Style="{StaticResource ButtonStyle}" Content="Старшая школа" 
+                    Click="ThirtMethodClick" Width="300" Height="100" Margin="10"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="Средняя школа" 
+                    Click="SecondMethodClick" Width="300" Height="100" Margin="10"/>
+            <Button Style="{StaticResource ButtonStyle}" Content="Начальная школа" 
+                    Click="FirstMethodClick" Width="300" Height="100" Margin="10"/>
         </StackPanel>
     </Grid>
 </Page>
