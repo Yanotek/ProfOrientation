@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ProfTests.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MainPage">
+      Title="MainPage" Background="{DynamicResource FormColor}">
     <Page.Resources>
         <Style TargetType="Border">
             <Setter Property="CornerRadius" Value="3"/>
@@ -14,7 +14,7 @@
     </Page.Resources>
     
     <Grid>
-        <StackPanel Margin="10">
+        <StackPanel Margin="10" VerticalAlignment="Center">
             <Button Style="{StaticResource ButtonStyle}" Content="Старшая школа" 
                     Click="ThirtMethodClick" Width="300" Height="100" Margin="10"/>
             <Button Style="{StaticResource ButtonStyle}" Content="Средняя школа" 

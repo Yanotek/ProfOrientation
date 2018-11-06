@@ -1,4 +1,5 @@
-﻿using ProfTests.Pages;
+﻿using ProfTests.Interfaces;
+using ProfTests.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +20,11 @@ namespace ProfTests.User_controls
     /// <summary>
     /// Interaction logic for TestControl.xaml
     /// </summary>
-    public partial class TestControl : UserControl
+    public partial class TestControl : UserControl, IEvaluation
     {
-        public TestControl( TestPageViewModel model)
+        public TestControl()
         {
             InitializeComponent();
-            Model = model;
         }
 
         public TestPageViewModel Model { get; set; }
@@ -33,6 +33,8 @@ namespace ProfTests.User_controls
         {
             Model.SelectedQuestion.Completed = true;
             Model.SelectedMethodic.Completed = !Model.SelectedMethodic.Questions.Any(x => x.Completed != true);
+            if(Model.NextCommand.CanExecute(null))
+                Model.NextCommand.Execute(null);
         }
     }
 }

@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Test.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
@@ -61,9 +64,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\ShareNumber.cs" />
+    <Compile Include="Converters\SourceToImageConverter.cs" />
     <Compile Include="Enums\TestType.cs" />
+    <Compile Include="Interfaces\IEvaluation.cs" />
     <Compile Include="User controls\ScalerControl.xaml.cs">
       <DependentUpon>ScalerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User controls\SelectionImagesControl.xaml.cs">
+      <DependentUpon>SelectionImagesControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="User controls\TestControl.xaml.cs">
       <DependentUpon>TestControl.xaml</DependentUpon>
@@ -97,6 +106,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="User controls\ScalerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="User controls\SelectionImagesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -147,6 +160,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Circle.png" />
+    <Resource Include="Images\Rectangle.png" />
+    <Resource Include="Images\Square.png" />
+    <Resource Include="Images\Triangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Kriv.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Test.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

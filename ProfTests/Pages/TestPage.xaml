@@ -21,15 +21,18 @@
     </Page.InputBindings>
     <Grid>
         <Grid Visibility="{Binding InstructionVisibility}">
-            <StackPanel VerticalAlignment="Center">
-                <TextBlock FontSize="25" Text="{Binding SelectedMethodic.Name}" HorizontalAlignment="Center" Margin="20"
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel VerticalAlignment="Center" Grid.Column="1">
+                <TextBlock FontSize="32" Text="{Binding SelectedMethodic.Name}" HorizontalAlignment="Center" Margin="20"
                        TextWrapping="Wrap" TextAlignment="Center"/>
-                <TextBlock FontSize="18" Text="{Binding SelectedMethodic.Description}" HorizontalAlignment="Center" Margin="20"
+                <TextBlock FontSize="25" Text="{Binding SelectedMethodic.Description}" HorizontalAlignment="Center" Margin="20"
                        TextWrapping="Wrap" TextAlignment="Center"/>
-                <Button Height="80" Width="200" Command="{Binding CloseInstruction}">
-                    <Viewbox>
-                        <TextBlock Text="Перейти к тесту!" Margin="5"/>
-                    </Viewbox>
+                <Button Height="80" Width="200" Command="{Binding CloseInstruction}" Margin="0,100,0,0">
+                    <TextBlock Text="Перейти к тесту!" Margin="5" FontSize="20"/>
                 </Button>
             </StackPanel>
         </Grid>
@@ -40,7 +43,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
+                <!--<Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="auto"/>
@@ -48,17 +51,15 @@
                 <Button Style="{StaticResource TriangleButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"
                     Command="{Binding PreviousCommand}"/>
                 <Button Style="{StaticResource TriangleButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                    Grid.Column="2" RenderTransform="{StaticResource Rotate180}" Command="{Binding NextCommand}"/>
-                <StackPanel Grid.Column="1" HorizontalAlignment="Center">
-                    <StackPanel Name="TestVariant"/>
-                    <Button Height="60" Width="200" Margin="20" Style="{StaticResource ButtonStyle}" Command="{Binding EndCommand}"
+                    Grid.Column="2" RenderTransform="{StaticResource Rotate180}" Command="{Binding NextCommand}"/>-->
+                <StackPanel Name="TestVariant"/>
+                <Button Height="60" Width="200" Margin="20" Grid.Row="1" Style="{StaticResource ButtonStyle}" Command="{Binding EndCommand}"
                         Visibility="{Binding SelectedMethodic.Completed, Converter={StaticResource BoolToHidden}}">
-                        <Viewbox>
-                            <TextBlock Text="{Binding LastMethodic, Converter={StaticResource LastMethodicToText}}"
+                    <Viewbox>
+                        <TextBlock Text="{Binding LastMethodic, Converter={StaticResource LastMethodicToText}}"
                                    TextAlignment="Center" Margin="5"/>
-                        </Viewbox>
-                    </Button>
-                </StackPanel>
+                    </Viewbox>
+                </Button>
             </Grid>
             <ListView ItemsSource="{Binding SelectedMethodic.Questions}" SelectedItem="{Binding SelectedQuestion}" 
                   Grid.Row="2" Background="{StaticResource FormColor}" BorderThickness="0"
@@ -67,7 +68,7 @@
                     <Style TargetType="ListViewItem">
                         <Setter Property="Template" Value="{StaticResource ListViewItemControlTemplateNumber}"/>
                         <Setter Property="BorderThickness" Value="3"/>
-                        <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+                        <Setter Property="Background" Value="#FFADA9A9"/>
                         <Setter Property="BorderBrush" Value="{Binding Completed, Converter={StaticResource QuestBorderConv}}"/>
                         <Setter Property="Margin" Value="0"/>
                     </Style>
@@ -80,7 +81,7 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border Width="30" Height="25" BorderThickness="0" Background="{Binding Completed, Converter={StaticResource QuestBorderConv}}"
+                        <Border Width="40" Height="35" BorderThickness="0" 
                         Padding="0">
                             <TextBlock Text="{Binding Number}" Foreground="White" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Border>

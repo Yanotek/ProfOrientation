@@ -28,7 +28,7 @@
                     <MultiTrigger.Conditions>
                         <Condition Property="IsMouseOver" Value="True"/>
                     </MultiTrigger.Conditions>
-                    <Setter Property="Background" TargetName="Bd" Value="{StaticResource Button.MouseOver.Background}"/>
+                    <Setter Property="Background" TargetName="Bd" Value="{StaticResource FormColor}"/>
                     <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Button.MouseOver.Border}"/>
                 </MultiTrigger>
                 <MultiTrigger>

@@ -1,21 +1,12 @@
 ﻿using ProfTests.Enums;
+using ProfTests.Interfaces;
 using ProfTests.Models;
 using ProfTests.Other;
 using ProfTests.User_controls;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ProfTests.Pages
 {
@@ -24,28 +15,10 @@ namespace ProfTests.Pages
     /// </summary>
     public partial class TestPage : Page
     {
-        public TestPage(List<Methodic> Methodics, TestType type)
+        public TestPage(List<Methodic> Methodics)
         {
             InitializeComponent();
             DataContext = Model = new TestPageViewModel(Methodics, this);
-            switch (type)
-            {
-                case TestType.Choices:
-                    {
-                        TestVariant.Children.Add(new TestControl(Model));
-                    }
-                    break;
-                case TestType.Compare:
-                    {
-                        TestVariant.Children.Add(new TestControl(Model));
-                    }
-                    break;
-                case TestType.Scale:
-                    {
-                        TestVariant.Children.Add(new ScalerControl(Model));
-                    }
-                    break;
-            }
         }
 
         TestPageViewModel Model;
@@ -61,6 +34,7 @@ namespace ProfTests.Pages
             Methodics = methodics;
             SelectedMethodic = Methodics.First();
             SelectedQuestion = SelectedMethodic.Questions.First();
+            RefreshControl(SelectedMethodic.Evaluation);
         }
 
         public SimpleCommand NextCommand
@@ -117,6 +91,7 @@ namespace ProfTests.Pages
                     {
                         SelectedMethodic = Methodics[index + 1];
                         SelectedQuestion = SelectedMethodic.Questions.First();
+                        RefreshControl(SelectedMethodic.Evaluation);
                         ShowInstruction();
                     }
                 });
@@ -200,6 +175,13 @@ namespace ProfTests.Pages
                 _TestVisibility = value;
                 OnPropertyChanged("TestVisibility");
             }
+        }
+
+        public void RefreshControl(IEvaluation control)
+        {
+            control.Model = this;
+            Page.TestVariant.Children.Clear();
+            Page.TestVariant.Children.Add((UserControl)control);
         }
     }
 }

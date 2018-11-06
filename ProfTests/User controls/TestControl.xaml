@@ -6,18 +6,25 @@
              xmlns:local="clr-namespace:ProfTests.User_controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Name="mainForm">
-    <StackPanel>
-        <TextBlock FontSize="20" Text="{Binding SelectedQuestion.Text}" HorizontalAlignment="Center" 
-                       Margin="10" TextWrapping="Wrap" TextAlignment="Center"/>
-        <ItemsControl ItemsSource="{Binding SelectedQuestion.Answers}" BorderThickness="0">
-            <ItemsControl.ItemTemplate>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1"> 
+        <TextBlock FontSize="32" Text="{Binding SelectedQuestion.Text}" HorizontalAlignment="Left" 
+                       Margin="10" TextWrapping="Wrap" TextAlignment="Left"/>
+            <ItemsControl ItemsSource="{Binding SelectedQuestion.Answers}" BorderThickness="0">
+                <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <RadioButton GroupName="{Binding ElementName=mainForm, Path=DataContext.SelectedQuestion.Text}" VerticalContentAlignment="Center" 
+                    <RadioButton Height="40" GroupName="{Binding ElementName=mainForm, Path=DataContext.SelectedQuestion.Text}" VerticalContentAlignment="Center" 
                                          IsChecked="{Binding IsSelected}" Template="{DynamicResource RadioButtonControlTemplate}" Checked="SetGreen">
-                        <TextBlock FontSize="17" Text="{Binding Text}" VerticalAlignment="Center"/>
+                        <TextBlock FontSize="26" Text="{Binding Text}" VerticalAlignment="Center"/>
                     </RadioButton>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
     </StackPanel>
+    </Grid>
 </UserControl>
