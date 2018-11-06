@@ -29,6 +29,12 @@ namespace ProfTests.Pages
         }
 
         ResultPageViewModel Model;
+
+        private void FuckGoBack(object sender, RoutedEventArgs e)
+        {
+            while (NavigationService.CanGoBack)
+                NavigationService.GoBack();
+        }
     }
 
     public class ResultPageViewModel : BaseViewModel

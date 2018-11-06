@@ -25,7 +25,7 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <Button Height="80" Width="300" Command="{Binding CloseInstruction}" Margin="0,100,0,50">
+                <Button Height="80" Width="300" Command="{Binding CloseInstruction}" Margin="0,100,0,50" Click="FuckGoBack">
                     <TextBlock Text="Завершить тестирование" Margin="5" FontSize="20"/>
                 </Button>
                 </StackPanel>
