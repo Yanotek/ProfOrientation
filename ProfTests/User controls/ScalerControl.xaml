@@ -16,6 +16,10 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
+        <Button Style="{StaticResource TriangleButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Command="{Binding PreviousCommand}"/>
+        <Button Style="{StaticResource TriangleButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    Grid.Column="2" RenderTransform="{StaticResource Rotate180}" Command="{Binding NextCommand}"/>
         <StackPanel Grid.Column="1">
             <TextBlock FontSize="25" Text="{Binding SelectedQuestion.Text}" HorizontalAlignment="Center" 
                        Margin="10" TextWrapping="Wrap" TextAlignment="Center"/>
@@ -24,19 +28,20 @@
                     <DataTemplate>
                         <StackPanel>
                             <TextBlock Text="{Binding Text}" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center"/>
+                            <Grid Margin="5, 0, 0, 10">
+                                <TextBlock Text="Совершенно не важно, совершенно не согласен" HorizontalAlignment="Left" FontSize="15"/>
+                                <TextBlock Text="очень важно, полностью согласен." HorizontalAlignment="Right" FontSize="15"/>
+                            </Grid>
                             <Grid>
-                                <Slider Name="slider" Minimum="1" Value="{Binding ScoreCount}" VerticalContentAlignment="Center" 
-                                Margin="0" ValueChanged="SetGreen" PreviewMouseLeftButtonUp="GoNext"/>
                                 <local:NumberedTickBar x:Name="TopTick" SnapsToDevicePixels="True" Placement="Top" Fill="#FF9C2E2E" Height="4"
                                  Visibility="Visible" Minimum="1" Maximum="10" Margin="5,0,10,0"/>
+                                <Slider Name="slider" Minimum="1" Value="{Binding ScoreCount}" VerticalContentAlignment="Center" 
+                                Margin="0" ValueChanged="SetGreen" PreviewMouseUp="GoNext"/>
                             </Grid>
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <Button Margin="0,100" Width="150" Height="40" HorizontalAlignment="Left" Command="{Binding PreviousCommand}">
-                <TextBlock Text="&lt;---" FontSize="20"/>
-            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

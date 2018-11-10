@@ -3,10 +3,12 @@ using ProfTests.Interfaces;
 using ProfTests.Models;
 using ProfTests.Other;
 using ProfTests.User_controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
 
 namespace ProfTests.Pages
 {
@@ -133,9 +135,39 @@ namespace ProfTests.Pages
             get => _selectedQuestion;
             set
             {
-                _selectedQuestion = value;
-                OnPropertyChanged("SelectedQuestion");
+                OpacityAnimation(()=>
+                {
+                    _selectedQuestion = value;
+                    OnPropertyChanged("SelectedQuestion");
+                });
             }
+        }
+
+        private void OpacityAnimation(Action act)
+        {
+            var control = (UserControl)SelectedMethodic.Evaluation;
+            DoubleAnimation animation = new DoubleAnimation
+            {
+                From = 1,
+                To = 0,
+                SpeedRatio = 2,
+                Duration = TimeSpan.FromSeconds(1),
+                FillBehavior = FillBehavior.HoldEnd
+            };
+            animation.Completed += (k, s) =>
+            {
+                act();
+                DoubleAnimation backAnimation = new DoubleAnimation
+                {
+                    From = 0,
+                    To = 1,
+                    SpeedRatio = 2,
+                    Duration = TimeSpan.FromSeconds(1),
+                    FillBehavior = FillBehavior.HoldEnd
+                };
+                control.BeginAnimation(UserControl.OpacityProperty, backAnimation);
+            };
+            control.BeginAnimation(UserControl.OpacityProperty, animation);
         }
 
         private bool _LastMethodic = false;

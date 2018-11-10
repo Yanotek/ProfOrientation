@@ -13,6 +13,8 @@ namespace ProfTests.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (String.IsNullOrEmpty((string)value))
+                return null;
             return BitmapFrame.Create(new Uri("pack://application:,,,/"+value.ToString(), UriKind.RelativeOrAbsolute));
         }
 

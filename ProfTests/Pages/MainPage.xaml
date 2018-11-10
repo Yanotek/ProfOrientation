@@ -15,12 +15,23 @@
     
     <Grid>
         <StackPanel Margin="10" VerticalAlignment="Center">
-            <Button Style="{StaticResource ButtonStyle}" Content="Старшая школа" 
-                    Click="ThirtMethodClick" Width="300" Height="100" Margin="10"/>
-            <Button Style="{StaticResource ButtonStyle}" Content="Средняя школа" 
-                    Click="SecondMethodClick" Width="300" Height="100" Margin="10"/>
-            <Button Style="{StaticResource ButtonStyle}" Content="Начальная школа" 
-                    Click="FirstMethodClick" Width="300" Height="100" Margin="10"/>
+            <StackPanel.Resources>
+                <Style TargetType="Button" >
+                    <Setter Property="Width" Value="300"/>
+                    <Setter Property="Height" Value="100"/>
+                    <Setter Property="Margin" Value="10"/>
+                    <Setter Property="FontSize" Value="20"/>
+                </Style>
+            </StackPanel.Resources>
+            <Button Click="ThirtMethodClick">
+                <TextBlock Text="Взрослые" TextWrapping="Wrap"/>
+            </Button>
+            <Button Click="SecondMethodClick">
+                <TextBlock Text="Средняя школа" TextWrapping="Wrap"/>
+            </Button>
+            <Button Click="FirstMethodClick">
+                <TextBlock Text="Начальная школа" TextWrapping="Wrap"/>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

@@ -18,9 +18,9 @@
             <ItemsControl ItemsSource="{Binding SelectedQuestion.Answers}" BorderThickness="0">
                 <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <RadioButton Height="40" GroupName="{Binding ElementName=mainForm, Path=DataContext.SelectedQuestion.Text}" VerticalContentAlignment="Center" 
+                    <RadioButton MinHeight="40" GroupName="{Binding ElementName=mainForm, Path=DataContext.SelectedQuestion.Text}" VerticalContentAlignment="Center"
                                          IsChecked="{Binding IsSelected}" Template="{DynamicResource RadioButtonControlTemplate}" Checked="SetGreen">
-                        <TextBlock FontSize="26" Text="{Binding Text}" VerticalAlignment="Center"/>
+                        <TextBlock FontSize="26" Text="{Binding Text}" VerticalAlignment="Center" TextWrapping="Wrap"/>
                     </RadioButton>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

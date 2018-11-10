@@ -32,6 +32,7 @@ namespace ProfTests.Pages
 
         private void FuckGoBack(object sender, RoutedEventArgs e)
         {
+            Model.GoWord();
             while (NavigationService.CanGoBack)
                 NavigationService.GoBack();
         }
@@ -45,5 +46,10 @@ namespace ProfTests.Pages
         }
 
         public List<TestResult> Results { get; set; }
+
+        public void GoWord()
+        {
+            WordHelper.InWord(Results.Select(x => Tuple.Create(x.Header, x.Description)), "Documents/Result.doc");
+        }
     }
 }

@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="Тестирование" Background="White" WindowState="Maximized">
     <Grid>
-        <Frame NavigationUIVisibility="Hidden" Source="Pages/MainPage.xaml"/>
+        <Frame NavigationUIVisibility="Hidden" Source="Pages/LoginPage.xaml"/>
     </Grid>
 </Window>

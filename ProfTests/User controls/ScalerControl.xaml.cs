@@ -37,7 +37,7 @@ namespace ProfTests.User_controls
             Model.SelectedMethodic.Completed = !Model.SelectedMethodic.Questions.Any(x => x.Completed != true);
         }
 
-        private void GoNext(object sender, MouseEventArgs e)
+        private void GoNext(object sender, MouseButtonEventArgs e)
         {
             if (Model.NextCommand.CanExecute(null))
                 Model.NextCommand.Execute(null);
@@ -66,7 +66,7 @@ namespace ProfTests.User_controls
                 text = Convert.ToString(Convert.ToInt32(this.Minimum + this.TickFrequency * i), 10);
 
 #pragma warning disable CS0618 // Type or member is obsolete
-                formattedText = new FormattedText(text, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 15, Brushes.White);
+                formattedText = new FormattedText(text, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 15, Brushes.Black);
 #pragma warning restore CS0618 // Type or member is obsolete
                 dc.DrawText(formattedText, new Point((tickFrequencySize * i), 30));
 
