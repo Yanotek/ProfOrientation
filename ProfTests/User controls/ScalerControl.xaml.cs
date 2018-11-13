@@ -31,16 +31,16 @@ namespace ProfTests.User_controls
 
         public TestPageViewModel Model { get; set; }
 
-        private void SetGreen(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            Model.SelectedQuestion.Completed = true;
-            Model.SelectedMethodic.Completed = !Model.SelectedMethodic.Questions.Any(x => x.Completed != true);
-        }
-
         private void GoNext(object sender, MouseButtonEventArgs e)
         {
             if (Model.NextCommand.CanExecute(null))
                 Model.NextCommand.Execute(null);
+        }
+
+        private void SetGreen(object sender, MouseEventArgs e)
+        {
+            Model.SelectedQuestion.Completed = true;
+            Model.SelectedMethodic.Completed = !Model.SelectedMethodic.Questions.Any(x => x.Completed != true);
         }
     }
 
@@ -66,7 +66,7 @@ namespace ProfTests.User_controls
                 text = Convert.ToString(Convert.ToInt32(this.Minimum + this.TickFrequency * i), 10);
 
 #pragma warning disable CS0618 // Type or member is obsolete
-                formattedText = new FormattedText(text, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 15, Brushes.Black);
+                formattedText = new FormattedText(text, CultureInfo.GetCultureInfo("en-us"), FlowDirection.LeftToRight, new Typeface("Verdana"), 20, Brushes.Black);
 #pragma warning restore CS0618 // Type or member is obsolete
                 dc.DrawText(formattedText, new Point((tickFrequencySize * i), 30));
 

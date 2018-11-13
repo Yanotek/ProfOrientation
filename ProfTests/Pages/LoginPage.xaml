@@ -5,15 +5,37 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:myControl="clr-namespace:ProfTests.User_controls"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="LoginPage" Background="{DynamicResource FormColor}">
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="LoginPage">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid Grid.ColumnSpan="2">
+            <Grid.Background>
+                <RadialGradientBrush Center="0.1,0.1" RadiusX="0.8" RadiusY="0.5" GradientOrigin="0.1,0.1">
+                    <GradientStop Color="#FF6767E8" Offset="0"/>
+                    <GradientStop Color="LightGray" Offset="1"/>
+                </RadialGradientBrush>
+            </Grid.Background>
+        </Grid>
+        <Grid Grid.Column="2" Grid.ColumnSpan="2">
+            <Grid.Background>
+                <RadialGradientBrush Center="0.9,0.1" RadiusX="0.8" RadiusY="0.5" GradientOrigin="0.9,0.1">
+                    <GradientStop Color="#FF6767E8" Offset="0"/>
+                    <GradientStop Color="LightGray" Offset="1"/>
+                </RadialGradientBrush>
+            </Grid.Background>
+        </Grid>
+        <Image Source="/ProfTests;component/Images/Euro.png" Grid.ColumnSpan="4" VerticalAlignment="Bottom" MaxHeight="200" Margin="0, 50"/>
+        <Image Source="/ProfTests;component/Images/College.png" VerticalAlignment="Top" MaxHeight="200"
+               HorizontalAlignment="Left"/>
+        <Image Source="/ProfTests;component/Images/og.png" VerticalAlignment="Top" Grid.Column="3" MaxHeight="250"
+               HorizontalAlignment="Right"/>
+        <StackPanel Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel.Resources>
                 <Style TargetType="Button" >
                     <Setter Property="Width" Value="300"/>

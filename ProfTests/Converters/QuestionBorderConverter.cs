@@ -17,7 +17,7 @@ namespace ProfTests.Converters
             var quest = (bool)value;
             if (quest)
                 
-                return new SolidColorBrush((Color)ColorConverter.ConvertFromString("#66008000"));
+                return new SolidColorBrush(Colors.Lime);
             return new SolidColorBrush((Color)ColorConverter.ConvertFromString("#7F1E1E1E"));
         }
 

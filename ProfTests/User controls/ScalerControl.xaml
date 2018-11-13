@@ -29,14 +29,21 @@
                         <StackPanel>
                             <TextBlock Text="{Binding Text}" TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center"/>
                             <Grid Margin="5, 0, 0, 10">
-                                <TextBlock Text="Совершенно не важно, совершенно не согласен" HorizontalAlignment="Left" FontSize="15"/>
-                                <TextBlock Text="очень важно, полностью согласен." HorizontalAlignment="Right" FontSize="15"/>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Совершенно не важно, совершенно не согласен" HorizontalAlignment="Left" FontSize="20"
+                                           TextWrapping="Wrap" Margin="0, 0, 10, 0"/>
+                                <TextBlock Text="очень важно, полностью согласен." HorizontalAlignment="Right" FontSize="20" Grid.Column="1"
+                                           TextWrapping="Wrap" Margin="10, 0, 0, 0"/>
                             </Grid>
                             <Grid>
                                 <local:NumberedTickBar x:Name="TopTick" SnapsToDevicePixels="True" Placement="Top" Fill="#FF9C2E2E" Height="4"
                                  Visibility="Visible" Minimum="1" Maximum="10" Margin="5,0,10,0"/>
                                 <Slider Name="slider" Minimum="1" Value="{Binding ScoreCount}" VerticalContentAlignment="Center" 
-                                Margin="0" ValueChanged="SetGreen" PreviewMouseUp="GoNext"/>
+                                            Margin="0" MouseMove="SetGreen" PreviewMouseUp="GoNext" Template="{StaticResource HorizontalSlider}">
+                                </Slider>
                             </Grid>
                         </StackPanel>
                     </DataTemplate>
