@@ -20,7 +20,7 @@
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock Text="{Binding Header}" FontSize="32" FontWeight="Medium" TextWrapping="Wrap" Margin="0,20"/>
-                                <!--<TextBlock Text="{Binding Description}" TextWrapping="Wrap" FontSize="20"/>-->
+                                <TextBlock Text="{Binding Description}" TextWrapping="Wrap" FontSize="20"/>
                             </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

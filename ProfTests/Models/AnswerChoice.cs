@@ -17,6 +17,8 @@ namespace ProfTests.Models
 
         public string Text { get; set; }
         private bool? _IsSelected = false;
+        private int scoreCount;
+
         public bool? IsSelected
         {
             get => _IsSelected;
@@ -27,6 +29,14 @@ namespace ProfTests.Models
             }
         }
 
-        public int ScoreCount { get; set; }
+        public int ScoreCount
+        {
+            get => scoreCount;
+            set
+            {
+                scoreCount = value;
+                OnPropertyChanged("ScoreCount");
+            }
+        }
     }
 }
